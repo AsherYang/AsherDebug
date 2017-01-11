@@ -1,16 +1,24 @@
 package com.asher.debug.runtime;
 
+import android.os.Build;
+import android.os.Looper;
+import android.os.Trace;
+import android.util.Log;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.CodeSignature;
+import org.aspectj.lang.reflect.MethodSignature;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by ouyangfan on 2017/1/10.
- * <p/>
+ * <p>
  * define Aspectj AOP
  * 定义切面， 切入点。
  * 告诉Aspectj 在哪进行代码织入
@@ -34,11 +42,13 @@ public class Asher {
 
     // 定义切入点为带@Time注解的方法
     @Pointcut("execution(@com.asher.debug.annotation.Time * *(..)) || methodInsideAnnotatedType()")
-    public void method() {}
+    public void method() {
+    }
 
     // 定义切入点为带@Time注解的构造方法
     @Pointcut("execution(@com.asher.debug.annotation.Time *.new(..)) || constructorInsideAnnotatedType()")
-    public void constructor() {}
+    public void constructor() {
+    }
 
     public void setEnabled(boolean enabled) {
         Asher.enabled = enabled;
@@ -46,7 +56,7 @@ public class Asher {
 
     // 定义通知，织入代码
     @Around("method() || constructor()")
-    public Object logAndExecute(ProceedingJoinPoint joinPoint) throws Throwable{
+    public Object logAndExecute(ProceedingJoinPoint joinPoint) throws Throwable {
         enterMethod(joinPoint);
 
         long startNanos = System.nanoTime();
@@ -59,10 +69,70 @@ public class Asher {
     }
 
     private void enterMethod(JoinPoint joinPoint) {
-        // TODO: 2017/1/10
+        if (!enabled) {
+            return;
+        }
+
+        CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
+        Class<?> cls = codeSignature.getDeclaringType();
+        String methodName = codeSignature.getName();
+        String[] parameterNames = codeSignature.getParameterNames();
+        Object[] parameterValues = joinPoint.getArgs();
+        StringBuilder builder = new StringBuilder("\u21E0 ");
+        builder.append(methodName).append("(");
+        for (int i = 0; i < parameterValues.length; i++) {
+            if (i > 0) {
+                builder.append(", ");
+            }
+            builder.append(parameterNames[i]).append("=");
+            builder.append(String.valueOf(parameterValues[i]));
+        }
+        builder.append(")");
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            builder.append(" [Thread: \"").append(Thread.currentThread().getName()).append("\"]");
+        }
+        Log.v(asTag(cls), builder.toString());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            final String section = builder.toString().substring(2);
+            Trace.beginSection(section);
+        }
     }
 
     private void exitMethod(JoinPoint joinPoint, Object result, long lengthMillis) {
-        // TODO: 2017/1/10
+        if (!enabled) {
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            Trace.endSection();
+        }
+
+        Signature signature = joinPoint.getSignature();
+        Class<?> cls = signature.getDeclaringType();
+        String methodName = signature.getName();
+        boolean hasReturnType = signature instanceof MethodSignature &&
+                ((MethodSignature) signature).getReturnType() != Void.class;
+
+        StringBuilder builder = new StringBuilder("\u21E0 ");
+        builder.append(methodName)
+                .append(" [")
+                .append(lengthMillis)
+                .append("ms]");
+
+        if (hasReturnType) {
+            builder.append(" = ");
+            builder.append(String.valueOf(result));
+        }
+
+        Log.v(asTag(cls), builder.toString());
+    }
+
+    private String asTag(Class<?> cls) {
+        // 如果是匿名内部类
+        if (cls.isAnonymousClass()) {
+            return asTag(cls.getEnclosingClass());
+        }
+        return cls.getSimpleName();
     }
 }
