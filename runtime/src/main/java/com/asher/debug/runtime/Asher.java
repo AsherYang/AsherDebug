@@ -78,7 +78,7 @@ public class Asher {
         String methodName = codeSignature.getName();
         String[] parameterNames = codeSignature.getParameterNames();
         Object[] parameterValues = joinPoint.getArgs();
-        StringBuilder builder = new StringBuilder("\u21E0 ");
+        StringBuilder builder = new StringBuilder("\u21E2 ");
         builder.append(methodName).append("(");
         for (int i = 0; i < parameterValues.length; i++) {
             if (i > 0) {
@@ -91,7 +91,7 @@ public class Asher {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             builder.append(" [Thread: \"").append(Thread.currentThread().getName()).append("\"]");
         }
-        Log.v(asTag(cls), builder.toString());
+        Log.i(asTag(cls), builder.toString());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             final String section = builder.toString().substring(2);
@@ -125,7 +125,7 @@ public class Asher {
             builder.append(String.valueOf(result));
         }
 
-        Log.v(asTag(cls), builder.toString());
+        Log.i(asTag(cls), builder.toString());
     }
 
     private String asTag(Class<?> cls) {

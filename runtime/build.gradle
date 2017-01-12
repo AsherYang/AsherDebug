@@ -68,6 +68,5 @@ android.libraryVariants.all { variant ->
                     break;
             }
         }
-
     }
 }

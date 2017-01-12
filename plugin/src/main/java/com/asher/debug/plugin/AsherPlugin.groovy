@@ -1,3 +1,4 @@
+package com.asher.debug.plugin
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin
 import org.aspectj.bridge.IMessage
@@ -15,7 +16,7 @@ class AsherPlugin implements Plugin<Project> {
         def hasLib = project.plugins.withType(LibraryPlugin)
 
         if (!hasApp && !hasLib) {
-            throw new IllegalStateException("'android' or 'android-library' plugin required.")
+            throw new IllegalStateException("asher debug need 'android' or 'android-library' plugin required.")
         }
 
         final def log = project.logger
@@ -36,10 +37,10 @@ class AsherPlugin implements Plugin<Project> {
             if (!variant.buildType.isDebuggable()) {
                 log.debug("Skipping non-debuggable build type '${variant.buildType.name}'.")
                 return;
-            } else if (!project.asher.enabled) {
+            }/* else if (!project.asher.enabled) {
                 log.debug("debug is not disabled.")
                 return;
-            }
+            }*/
 
             JavaCompile javaCompile = variant.javaCompile
             javaCompile.doLast {
