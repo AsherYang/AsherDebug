@@ -16,16 +16,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testTime();
+        testTime("Asher", 20);
+//        mThread.start();
+        AsherTest asherTest = new AsherTest("Asher");
+        asherTest.sayHello();
     }
 
     @Time
-    private void testTime() {
+    private void testTime(String name, int age) {
         try {
             Thread.sleep(5000);
-            Log.i(TAG, "-----------  testTime --------");
+            Log.i(TAG, "-----------  name = " + name + " , age = " + age);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    Thread mThread = new Thread(new Runnable() {
+        @Override
+        @Time
+        public void run() {
+            try {
+                Thread.sleep(2000);
+                Log.i(TAG, "-----------  Thread --------");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+
+    @Time
+    static class AsherTest {
+        private final String name;
+
+        AsherTest(String name) {
+            this.name = name;
+        }
+
+        public String sayHello() {
+            return "hello " + name;
         }
     }
 }

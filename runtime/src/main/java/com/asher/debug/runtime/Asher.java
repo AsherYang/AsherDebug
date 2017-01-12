@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by ouyangfan on 2017/1/10.
- * <p>
+ * <p/>
  * define Aspectj AOP
  * 定义切面， 切入点。
  * 告诉Aspectj 在哪进行代码织入
@@ -112,7 +112,7 @@ public class Asher {
         Class<?> cls = signature.getDeclaringType();
         String methodName = signature.getName();
         boolean hasReturnType = signature instanceof MethodSignature &&
-                ((MethodSignature) signature).getReturnType() != Void.class;
+                ((MethodSignature) signature).getReturnType() != void.class;
 
         StringBuilder builder = new StringBuilder("\u21E0 ");
         builder.append(methodName)
