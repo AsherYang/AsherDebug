@@ -1,4 +1,5 @@
 apply plugin: 'groovy'
+apply from: 'maven_upload.gradle'
 
 dependencies {
     compile gradleApi()

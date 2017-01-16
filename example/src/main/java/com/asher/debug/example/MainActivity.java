@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.asher.debug.R;
 import com.asher.debug.annotation.Time;
-//import com.asher.debug.annotation.Time;
 
 public class MainActivity extends AppCompatActivity {
 

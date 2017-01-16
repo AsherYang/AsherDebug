@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.0.0'
@@ -16,6 +17,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
     }
 }
 
@@ -26,6 +28,6 @@ task clean(type: Delete) {
 ext {
     compileSdkVersion = 24
     buildToolsVersion = '24.0.1'
-    minSdkVersion = 19
+    minSdkVersion = 13
     targetSdkVersion = 24
 }

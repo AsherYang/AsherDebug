@@ -3,6 +3,7 @@ import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 
 apply plugin: 'com.android.library'
+apply from: 'maven_upload.gradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -30,7 +31,7 @@ android {
 
 dependencies {
     compile 'org.aspectj:aspectjrt:1.8.6'
-    compile project(':annotations')
+    compile  'com.xtc.ouyangfan.aop:aop-time-annotations:0.0.6-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
 

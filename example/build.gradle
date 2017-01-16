@@ -1,26 +1,24 @@
-import org.aspectj.bridge.IMessage
-import org.aspectj.bridge.MessageHandler
-import org.aspectj.tools.ajc.Main
-
 buildscript {
     repositories {
         mavenCentral()
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
     }
     dependencies {
-        classpath 'org.aspectj:aspectjtools:1.8.6'
+        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.7-SNAPSHOT'
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'asher'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.asher.debug"
-        minSdkVersion 19
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -36,44 +34,45 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.1.1'
-    compile project(':runtime')
+//    compile project(':runtime')
 //    compile project(":plugin")
+//    compile project(":annotations")
 }
 
 
 // aspect ajc compile
-project.android.applicationVariants.all { variant ->
-    JavaCompile javaCompile = variant.javaCompile
-    javaCompile.doLast {
-        String[] args = [
-                "-showWeaveInfo",
-                "-1.5",
-                "-inpath", javaCompile.destinationDir.toString(),
-                "-aspectpath", javaCompile.classpath.asPath,
-                "-d", javaCompile.destinationDir.toString(),
-                "-classpath", javaCompile.classpath.asPath,
-                "-bootclasspath", android.bootClasspath.join(File.pathSeparator)
-        ]
-
-        MessageHandler handler = new MessageHandler(true);
-        new Main().run(args, handler)
-
-        def log = project.logger
-        for (IMessage message : handler.getMessages(null, true)) {
-            switch (message.getKind()) {
-                case IMessage.ABORT:
-                case IMessage.ERROR:
-                case IMessage.FAIL:
-                    log.error message.message, message.thrown
-                    break;
-                case IMessage.WARNING:
-                case IMessage.INFO:
-                    log.info message.message, message.thrown
-                    break;
-                case IMessage.DEBUG:
-                    log.debug message.message, message.thrown
-                    break;
-            }
-        }
-    }
-}
+//project.android.applicationVariants.all { variant ->
+//    JavaCompile javaCompile = variant.javaCompile
+//    javaCompile.doLast {
+//        String[] args = [
+//                "-showWeaveInfo",
+//                "-1.5",
+//                "-inpath", javaCompile.destinationDir.toString(),
+//                "-aspectpath", javaCompile.classpath.asPath,
+//                "-d", javaCompile.destinationDir.toString(),
+//                "-classpath", javaCompile.classpath.asPath,
+//                "-bootclasspath", android.bootClasspath.join(File.pathSeparator)
+//        ]
+//
+//        MessageHandler handler = new MessageHandler(true);
+//        new Main().run(args, handler)
+//
+//        def log = project.logger
+//        for (IMessage message : handler.getMessages(null, true)) {
+//            switch (message.getKind()) {
+//                case IMessage.ABORT:
+//                case IMessage.ERROR:
+//                case IMessage.FAIL:
+//                    log.error message.message, message.thrown
+//                    break;
+//                case IMessage.WARNING:
+//                case IMessage.INFO:
+//                    log.info message.message, message.thrown
+//                    break;
+//                case IMessage.DEBUG:
+//                    log.debug message.message, message.thrown
+//                    break;
+//            }
+//        }
+//    }
+//}
