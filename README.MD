@@ -18,3 +18,22 @@
 2. 在宿主模块下的`build.gradle`中加入`ajc` 编译器支持，
 3. 同时去除宿主模块下的引入申明方式，
 4. 修改其他项目的引用方式，其中包括`runtime`引用的`annotations`的引用方式，改为`compile project` 方式等
+
+
+## 程序运行
+
+1. 在宿主`build.gradle`中添加依赖支持
+  ```JAVA
+  buildscript {
+      repositories {
+          mavenCentral()
+          maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+      }
+      dependencies {
+          classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.7-SNAPSHOT'
+      }
+  }
+  
+  apply plugin: 'asher'
+  ```
+2. 运行效果
