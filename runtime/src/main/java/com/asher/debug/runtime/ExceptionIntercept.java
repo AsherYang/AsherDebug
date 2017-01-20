@@ -71,7 +71,7 @@ public class ExceptionIntercept {
         builder.append(" throw ");
         builder.append(e);
         builder.append(" \n");
-        builder.append("\u21E2");
+        builder.append("\u21E0");
         builder.append(" at ");
         builder.append(exceptionFile);
         builder.append(" on ");
