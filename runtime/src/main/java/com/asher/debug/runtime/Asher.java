@@ -5,6 +5,8 @@ import android.os.Looper;
 import android.os.Trace;
 import android.util.Log;
 
+import com.asher.debug.util.ClassTagUtil;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -91,7 +93,7 @@ public class Asher {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             builder.append(" [Thread: \"").append(Thread.currentThread().getName()).append("\"]");
         }
-        Log.i(asTag(cls), builder.toString());
+        Log.i(ClassTagUtil.asTag(cls), builder.toString());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             final String section = builder.toString().substring(2);
@@ -125,14 +127,7 @@ public class Asher {
             builder.append(String.valueOf(result));
         }
 
-        Log.i(asTag(cls), builder.toString());
+        Log.i(ClassTagUtil.asTag(cls), builder.toString());
     }
 
-    private String asTag(Class<?> cls) {
-        // 如果是匿名内部类
-        if (cls.isAnonymousClass()) {
-            return asTag(cls.getEnclosingClass());
-        }
-        return cls.getSimpleName();
-    }
 }

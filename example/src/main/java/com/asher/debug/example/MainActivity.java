@@ -15,10 +15,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testTime("Asher", 20);
+//        testTime("Asher", 20);
 //        mThread.start();
         AsherTest asherTest = new AsherTest("Asher");
         asherTest.sayHello();
+        hookException();
     }
 
     @Time
@@ -55,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
         public String sayHello() {
             return "hello " + name;
         }
+    }
+
+    String nullPointer;
+    private void hookException() {
+        boolean result = nullPointer.equals("nullPoint");
+        Log.i(TAG, String.valueOf(result));
     }
 }
