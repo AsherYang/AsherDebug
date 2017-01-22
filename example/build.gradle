@@ -1,30 +1,18 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+        // 服务器maven仓库地址
+//        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+        //本地Maven仓库地址
+        maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.8-SNAPSHOT'
+        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.9-SNAPSHOT'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'asher'
-
-
-// 若要使用第一步骤，本地调试，可以打开本类中注释， 然后屏蔽上面的buildscript 以及apply plugin: 'asher'
-//buildscript {
-//    repositories {
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath 'org.aspectj:aspectjtools:1.8.6'
-//    }
-//}
-
-//import org.aspectj.bridge.IMessage
-//import org.aspectj.bridge.MessageHandler
-//import org.aspectj.tools.ajc.Main
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -49,43 +37,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.1.1'
-//    compile project(':runtime')
 }
 
-
-// aspect ajc compile
-//project.android.applicationVariants.all { variant ->
-//    JavaCompile javaCompile = variant.javaCompile
-//    javaCompile.doLast {
-//        String[] args = [
-//                "-showWeaveInfo",
-//                "-1.5",
-//                "-inpath", javaCompile.destinationDir.toString(),
-//                "-aspectpath", javaCompile.classpath.asPath,
-//                "-d", javaCompile.destinationDir.toString(),
-//                "-classpath", javaCompile.classpath.asPath,
-//                "-bootclasspath", android.bootClasspath.join(File.pathSeparator)
-//        ]
-//
-//        MessageHandler handler = new MessageHandler(true);
-//        new Main().run(args, handler)
-//
-//        def log = project.logger
-//        for (IMessage message : handler.getMessages(null, true)) {
-//            switch (message.getKind()) {
-//                case IMessage.ABORT:
-//                case IMessage.ERROR:
-//                case IMessage.FAIL:
-//                    log.error message.message, message.thrown
-//                    break;
-//                case IMessage.WARNING:
-//                case IMessage.INFO:
-//                    log.info message.message, message.thrown
-//                    break;
-//                case IMessage.DEBUG:
-//                    log.debug message.message, message.thrown
-//                    break;
-//            }
-//        }
-//    }
-//}

@@ -19,10 +19,13 @@ def pom_version = pom_properties.getProperty("POM_VERSION")
 uploadArchives {
 
     repositories.mavenDeployer {
-        repository(url: repoUrl) {
-            authentication(userName: userName,
-                    password: userPassword)
-        }
+//        repository(url: repoUrl) {
+//            authentication(userName: userName,
+//                    password: userPassword)
+//        }
+
+        // 发布到本地
+        repository(url: uri('../repo'))
 
         pom.project {
             name pom_name
