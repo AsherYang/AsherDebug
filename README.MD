@@ -19,9 +19,7 @@
 3. 同时去除宿主模块下的引入申明方式，
 4. 修改其他项目的引用方式，其中包括`runtime`引用的`annotations`的引用方式，改为`compile project` 方式等
 
-
-## 程序运行
-
+## 使用方法
 1. 在宿主`build.gradle`中添加依赖支持
   ```JAVA
   buildscript {
@@ -35,8 +33,21 @@
   }
   
   apply plugin: 'asher'
-  ```
-  
-2. 运行效果
+  ```
+ 2. 使用@Time 来进行检测时间
+    ```JAVA
+    @Time
+    private void testTime(String name, int age) {
+        try {
+            Thread.sleep(5000);
+            Log.i(TAG, "-----------  name = " + name + " , age = " + age);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    } 
+    ```
+ 
+## 程序运行
+运行效果
 
 ![pic01] (https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
