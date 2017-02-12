@@ -50,5 +50,5 @@
 
 ## 程序运行
 
-![pic01](https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
+![pic01] (https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
 
