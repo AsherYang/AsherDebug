@@ -21,7 +21,7 @@
 
 ## 使用方法
 1. 在宿主`build.gradle`中添加依赖支持
-  ```JAVA
+ ```JAVA
   buildscript {
       repositories {
           mavenCentral()
@@ -33,23 +33,22 @@
   }
   
   apply plugin: 'asher'
-  ```
+ ```
   
- 2. 使用@Time 来进行检测时间
-    ```JAVA
-    @Time
-    private void testTime(String name, int age) {
-        try {
-            Thread.sleep(5000);
-            Log.i(TAG, "-----------  name = " + name + " , age = " + age);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    } 
-    ```
+2. 使用`@Time`来进行检测时间
+ ```JAVA
+ @Time
+ private void testTime(String name, int age) {
+    try {
+        Thread.sleep(5000);
+        Log.i(TAG, "--- name = " + name + " , age = " + age);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+ } 
+ ```
 
 ## 程序运行
 
-运行效果
+![pic01](https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
 
-![pic01] (https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
