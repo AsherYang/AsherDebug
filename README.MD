@@ -34,6 +34,7 @@
   
   apply plugin: 'asher'
   ```
+  
  2. 使用@Time 来进行检测时间
     ```JAVA
     @Time
@@ -46,8 +47,9 @@
         }
     } 
     ```
- 
+
 ## 程序运行
+
 运行效果
 
 ![pic01] (https://raw.githubusercontent.com/AsherYang/AsherDebug/master/screenshot/plugin_run_demo.png)
