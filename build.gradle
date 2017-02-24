@@ -9,7 +9,7 @@ buildscript {
         maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:2.2.3'
         // is needed
         classpath 'org.aspectj:aspectjtools:1.8.6'
         // NOTE: Do not place your application dependencies here; they belong
