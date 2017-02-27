@@ -7,12 +7,13 @@ buildscript {
         maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.10-SNAPSHOT'
+        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.12-SNAPSHOT'
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'asher'
+apply plugin: 'javassist'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
