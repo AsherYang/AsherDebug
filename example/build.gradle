@@ -7,7 +7,7 @@ buildscript {
         maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.12-SNAPSHOT'
+        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.1-SNAPSHOT'
     }
 }
 

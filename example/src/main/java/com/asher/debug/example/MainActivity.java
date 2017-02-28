@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     Thread mThread = new Thread(new Runnable() {
         @Override
-        @Time
+//        @Time
         public void run() {
             try {
                 Thread.sleep(2000);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    @Time
+//    @Time
     static class AsherTest {
         private final String name;
 
