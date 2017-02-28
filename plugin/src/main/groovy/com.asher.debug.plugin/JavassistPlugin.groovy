@@ -12,6 +12,11 @@ class JavassistPlugin implements Plugin<Project> {
         log.error "===================="
         log.error " 正在修改class !"
         log.error "===================="
+        project.dependencies {
+            debugCompile 'com.xtc.ouyangfan.aop:aop-time-runtime:0.0.11-SNAPSHOT'
+            debugCompile 'org.aspectj:aspectjrt:1.8.6'
+            compile  'com.xtc.ouyangfan.aop:aop-time-annotations:0.0.11-SNAPSHOT'
+        }
         project.android.registerTransform(new JavassistTransform(project))
     }
 }

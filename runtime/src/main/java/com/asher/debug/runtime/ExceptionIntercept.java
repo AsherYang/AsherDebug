@@ -25,8 +25,8 @@ public class ExceptionIntercept {
     private static volatile boolean enabled = true;
 
     // NullPointerException
-//    private static final String POINTCUT_NULL_POINTER = "execution(* hookException())";
-    private static final String POINTCUT_NULL_POINTER = "execution(* *.*(..))";
+    private static final String POINTCUT_NULL_POINTER = "execution(* hookException())";
+//    private static final String POINTCUT_NULL_POINTER = "execution(* *.*(..))";
 
     @Pointcut(POINTCUT_NULL_POINTER)
     public void exceptionPointCut() {

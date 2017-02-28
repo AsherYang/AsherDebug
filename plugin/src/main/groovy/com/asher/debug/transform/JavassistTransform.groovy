@@ -37,15 +37,15 @@ class JavassistTransform extends Transform {
 
     @Override
     boolean isIncremental() {
-        return false
+        return false;
     }
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
         // Transform的inputs有两种类型，一种是目录，一种是jar包，要分开遍历
-        TransformInput tfInputs = transformInvocation.getReferencedInputs()
+        Collection<TransformInput> inputs = transformInvocation.getInputs()
         TransformOutputProvider tfOutputProvider = transformInvocation.getOutputProvider()
-        tfInputs.each { TransformInput input ->
+        inputs.each { TransformInput input ->
             // jar 包形式
             try {
                 input.jarInputs.each {
