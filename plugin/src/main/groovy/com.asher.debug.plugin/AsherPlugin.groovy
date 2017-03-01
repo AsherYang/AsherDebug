@@ -28,9 +28,9 @@ class AsherPlugin implements Plugin<Project> {
         }
 
         project.dependencies {
-            debugCompile 'com.xtc.ouyangfan.aop:aop-time-runtime:0.0.9-SNAPSHOT'
+            debugCompile 'com.xtc.aop:aop-time-runtime:0.0.2-Dev'
             debugCompile 'org.aspectj:aspectjrt:1.8.6'
-            compile  'com.xtc.ouyangfan.aop:aop-time-annotations:0.0.9-SNAPSHOT'
+            compile  'com.xtc.aop:aop-time-annotations:0.0.2-Dev'
         }
 
         variants.all { variant ->
