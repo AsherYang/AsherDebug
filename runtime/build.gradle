@@ -31,7 +31,7 @@ android {
 
 dependencies {
     compile 'org.aspectj:aspectjrt:1.8.6'
-    compile  'com.xtc.ouyangfan.aop:aop-time-annotations:0.0.1-SNAPSHOT'
+    compile  'com.xtc.ouyangfan.aop:aop-time-annotations:0.0.9-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
 

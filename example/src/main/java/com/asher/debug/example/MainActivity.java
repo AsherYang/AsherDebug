@@ -1,13 +1,13 @@
 package com.asher.debug.example;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.asher.debug.R;
 import com.asher.debug.annotation.Time;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 

@@ -2,12 +2,12 @@ buildscript {
     repositories {
         mavenCentral()
         // 服务器maven仓库地址
-//        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
         //本地Maven仓库地址
-        maven {url uri('../repo') }
+//        maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.1-SNAPSHOT'
+        classpath 'com.xtc.ouyangfan.aop:aop-time-plugin:0.0.9-SNAPSHOT'
     }
 }
 
@@ -37,6 +37,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
+    // 公司
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    // 本地
+//    compile 'com.android.support:appcompat-v7:24.1.1'
 }
 

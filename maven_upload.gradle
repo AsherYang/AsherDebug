@@ -20,13 +20,13 @@ uploadArchives {
 
     repositories.mavenDeployer {
         // 服务器repo
-//        repository(url: repoUrl) {
-//            authentication(userName: userName,
-//                    password: userPassword)
-//        }
+        repository(url: repoUrl) {
+            authentication(userName: userName,
+                    password: userPassword)
+        }
 
         // 发布到本地
-        repository(url: uri('../repo'))
+//        repository(url: uri('../repo'))
 
         pom.project {
             name pom_name

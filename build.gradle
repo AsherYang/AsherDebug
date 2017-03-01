@@ -4,12 +4,13 @@ buildscript {
     repositories {
         jcenter()
         // 服务器maven仓库地址
-//        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
         //本地Maven仓库地址
-        maven {url uri('../repo') }
+//        maven {url uri('../repo') }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.1.0'
+        // 'com.android.tools.build:gradle:2.2.3' 本地使用
         // is needed
         classpath 'org.aspectj:aspectjtools:1.8.6'
         // NOTE: Do not place your application dependencies here; they belong
@@ -21,9 +22,9 @@ allprojects {
     repositories {
         jcenter()
         // 服务器maven仓库地址
-//        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
+        maven { url "http://172.28.10.222:8081/nexus/content/groups/android_public/" }
         //本地Maven仓库地址
-        maven {url uri('../repo') }
+//        maven {url uri('../repo') }
     }
 }
 
@@ -32,8 +33,14 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 24
-    buildToolsVersion = '24.0.1'
-    minSdkVersion = 13
-    targetSdkVersion = 24
+    // 公司项目
+    compileSdkVersion = 22
+    buildToolsVersion = '22.0.1'
+    minSdkVersion = 14
+    targetSdkVersion = 22
+    //  本地使用
+//    compileSdkVersion = 24
+//    buildToolsVersion = '24.0.1'
+//    minSdkVersion = 13
+//    targetSdkVersion = 24
 }
